@@ -1,0 +1,9 @@
+<div class="main-wrapper">
+  <section class="calendar-section">
+    <app-calendar (dateSelect)="handleDateChange($event)"></app-calendar>
+  </section>
+  <section class="diary-section">
+    <app-diary [selectedDay]="selectedDay"></app-diary>
+  </section>
+</div>
+  

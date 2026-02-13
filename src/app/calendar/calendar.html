@@ -1,0 +1,20 @@
+<div class="calendar-wrapper">
+  <div class="header">
+    <h2>{{ viewDate | date:'yyyy년 MM월' }}</h2>
+  </div>
+
+  <div class="calendar-grid">
+    <div class="day-label" *ngFor="let week of ['일','월','화','수','목','금','토']">
+      {{ week }}
+    </div>
+
+    <div class="empty-cell" *ngFor="let empty of emptyDays"></div>
+
+    <div class="day-cell" 
+         *ngFor="let day of daysInMonth" 
+         (click)="onDateClick(day)"
+         [class.has-diary]="false"> 
+      <span class="date-num">{{ day }}</span>
+    </div>
+  </div>
+</div>
