@@ -1,46 +1,55 @@
-.calendar-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 10px;
-
-  h2 {
-    grid-column: span 7;
-    color: #ff4d6d;
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
-
-  .day-label {
-    color: #ff8fa3;
-    font-weight: bold;
-    padding: 10px 0;
-    text-transform: uppercase;
-  }
-
-  .day-cell {
-    aspect-ratio: 1;
-    background: white;
-    border: 2px solid #ffe5ec;
-    border-radius: 15px;
+.calendar-wrapper{
+  .calendar-header {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s ease;
-
-    &:hover {
-      background: #fff0f3;
-      transform: scale(1.05);
+    justify-content: space-between;
+    grid-column: span 7;
+    color: #ffffff;
+    background-color: #ff8fa3;
+    padding: 20px 10px;
+    border-radius: 10px 10px 0 0 ;
+    margin-bottom: 10px;
+    >*{
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+  }
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+  
+    .day-label {
+      color: #ff8fa3;
+      font-weight: bold;
+      padding: 10px 0;
+      text-transform: uppercase;
+      text-align: center;
     }
 
-    // 일기 쓴 날 (핑크색 링 효과)
-    &.has-diary {
-      border: 3px solid #ff4d6d;
-      &::after {
-        content: '●';
-        color: #ff4d6d;
-        font-size: 10px;
+    .day-cell {
+      aspect-ratio: 1;
+      background: white;
+      border: 2px solid #ffe5ec;
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: #fff0f3;
+        transform: scale(1.05);
+      }
+
+      &.has-diary {
+        border: 3px solid #ff8fa3;
+        &::after {
+          content: '●';
+          color: #ff8fa3;
+          font-size: 10px;
+        }
       }
     }
   }

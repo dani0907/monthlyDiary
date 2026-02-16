@@ -4,16 +4,23 @@
   align-items: flex-start;
   gap: 30px;
   padding: 50px;
-  
+  margin: auto;
+  max-width: 1400px;
 
   section {
-    background: rgba(255, 255, 255, 0.9); // 약간 투명한 화이트
-    border-radius: 40px; // 아주 둥근 모서리
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 40px;
     padding: 30px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); // 깊이감 있는 그림자
-    backdrop-filter: blur(10px); // 뒷배경 살짝 흐리게 (트렌디한 느낌)
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); 
+    backdrop-filter: blur(10px);
+    min-height: 600px;
   }
 
-  .calendar-section { flex: 1.2; }
-  .diary-section { flex: 0.8; min-width: 350px; }
+  .calendar-section { 
+    min-width: 700px;
+  }
+  .diary-section { 
+    flex :1;
+    min-width: 400px; 
+  }
 }

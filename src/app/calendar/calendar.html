@@ -1,10 +1,11 @@
 <div class="calendar-wrapper">
-  <div class="header">
-    <h2>{{ viewDate | date:'yyyy년 MM월' }}</h2>
+  <div class="calendar-header">
+    <span>MONTHLY PLANNER</span>
+    <h2>{{ viewDate | date:'MM.yyyy' }}</h2>
   </div>
 
   <div class="calendar-grid">
-    <div class="day-label" *ngFor="let week of ['일','월','화','수','목','금','토']">
+    <div class="day-label" *ngFor="let week of ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']">
       {{ week }}
     </div>
 
