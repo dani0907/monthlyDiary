@@ -1,7 +1,11 @@
 <div class="calendar-wrapper">
   <div class="calendar-header">
-    <span>MONTHLY PLANNER</span>
-    <h2>{{ viewDate | date:'MM.yyyy' }}</h2>
+    <span class="calendar-title">MONTHLY PLANNER</span>
+    <div class="calendar-datebox">
+      <button (click)="clickChangeMonth(1)"><i class="bi bi-caret-left-fill"></i></button>
+      <h2>{{ viewDate | date:'MM.yyyy' }}</h2>
+      <button (click)="clickChangeMonth(2)"><i class="bi bi-caret-right-fill"></i></button>
+    </div>
   </div>
 
   <div class="calendar-grid">

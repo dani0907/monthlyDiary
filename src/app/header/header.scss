@@ -1,0 +1,15 @@
+.header{
+  max-width: 1200px;
+  padding: 0 50px;
+  margin: auto;
+  padding: 20px;
+  .nav{
+    >*{
+      padding: 10px;
+      background-color: #ff8fa3;
+      color:#FFFFFF;
+      border-radius: 20px;
+      margin-right: 5px;
+    }
+  }
+}

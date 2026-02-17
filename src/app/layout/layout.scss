@@ -4,14 +4,9 @@
   // align-items: center;
   // min-height: calc(100vh - 120px); 
   // background-color: #fff0f3; 
-  padding: 40px;
+  // padding: 40px;
 }
-
-.main-wrapper {
-  display: flex;
-  width: 100%;
-  max-width: 1100px;
-  min-height: calc(100vh - 120px); 
-  // gap: 40px;
-  align-items: flex-start;
+.content{
+  max-width: 1200px;
+  margin: auto;
 }
