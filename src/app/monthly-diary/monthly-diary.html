@@ -1,11 +1,11 @@
 <div class="diary-container">
   <div class="diary-header">
-    <button class="changeMonthBtn"><i class="bi bi-caret-left-fill"></i></button>
-    <h2>2026.Feb</h2>
-    <button class="changeMonthBtn"><i class="bi bi-caret-right-fill"></i></button>
+    <button (click)="clickChangeMonth(1)" class="changeMonthBtn"><i class="bi bi-caret-left-fill"></i></button>
+    <h2>{{ (viewDate$ | async)| date:'MM.yyyy'}}</h2>
+    <button (click)="clickChangeMonth(2)" class="changeMonthBtn"><i class="bi bi-caret-right-fill"></i></button>
   </div>
   <div class="card-grid">
-    <div class="diary-card" *ngFor="let i of [1,2,3,4,5]">
+    <div class="diary-card" *ngFor="let i of [1,2,3,4,5,6,7]">
       <div class="card-header">
         <span class="date">2026.02.{{i}}</span>
         <button class="more-btn">⋮</button>

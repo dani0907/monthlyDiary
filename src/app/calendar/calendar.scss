@@ -55,7 +55,7 @@
       cursor: pointer;
       transition: all 0.2s ease;
 
-      &:hover {
+      &:hover , &.selected{
         background: #fff0f3;
         transform: scale(1.05);
       }
