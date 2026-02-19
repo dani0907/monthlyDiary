@@ -8,7 +8,7 @@ export class DateService{
   private viewDateSource = new BehaviorSubject<Date>(new Date());
   viewDate$ = this.viewDateSource.asObservable();
 
-  // 날짜를 변경하는 함수
+  // change the date
   updateDate(newDate: Date) {
     this.viewDateSource.next(newDate);
     console.log("updateDate ***" + newDate);

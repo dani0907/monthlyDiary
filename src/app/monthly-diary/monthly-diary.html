@@ -1,26 +1,30 @@
-<div class="diary-container">
-  <div class="diary-header">
-    <button (click)="clickChangeMonth(1)" class="changeMonthBtn"><i class="bi bi-caret-left-fill"></i></button>
-    <h2>{{ (viewDate$ | async)| date:'MM.yyyy'}}</h2>
-    <button (click)="clickChangeMonth(2)" class="changeMonthBtn"><i class="bi bi-caret-right-fill"></i></button>
-  </div>
-  <div class="card-grid">
-    <div class="diary-card" *ngFor="let i of [1,2,3,4,5,6,7]">
-      <div class="card-header">
-        <span class="date">2026.02.{{i}}</span>
-        <button class="more-btn">⋮</button>
-      </div>
-      <div class="card-body">
-        <h3 class="title">오늘의 일기 제목 {{i}}</h3>
-        <p class="content">
-          리액트와 앵귤러는 비슷하면서도 다르다. 오늘은 라우팅과 컴포넌트 임포트 방식을 배웠다. 
-          카드 형식으로 만드니 훨씬 보기 좋다!
-        </p>
-      </div>
-      <div class="card-footer">
-        <span class="tag">#일상</span>
-        <span class="tag">#공부</span>
+<div class="main-layout">
+  <div class="diary-container list-view">
+    <div class="diary-header">
+      <button (click)="clickChangeMonth(1)" class="changeMonthBtn"><i class="bi bi-caret-left-fill"></i></button>
+      <h2>{{ (viewDate$ | async)| date:'MM.yyyy'}}</h2>
+      <button (click)="clickChangeMonth(2)" class="changeMonthBtn"><i class="bi bi-caret-right-fill"></i></button>
+    </div>
+    <div class="card-grid">
+      <div (click)="showDiaryEditer()" class="diary-card" *ngFor="let diary of diaryList">
+        <div class="card-header">
+          <span class="date">{{diary.date}}</span>
+          <button class="more-btn">⋮</button>
+        </div>
+        <div class="card-body">
+          <h3 class="title">{{diary.title}}</h3>
+          <p class="content">
+            {{diary.content}}
+          </p>
+        </div>
+        <div class="card-footer">
+          <span class="tag" *ngFor="let tag of diary.tag">{{tag}}</span>
+          <!-- <span class="tag">#공부</span> -->
+        </div>
       </div>
     </div>
+  </div>
+  <div class="detail-view" *ngIf="showDiaryEditer()">
+    <app-diary></app-diary>
   </div>
 </div>

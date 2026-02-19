@@ -1,24 +1,42 @@
-.diary-container {
+.main-layout{
+  display: flex;
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
-  .diary-header{
-    display: flex;
-    vertical-align: middle;
-    margin-bottom: 20px;
-    >*{
-      color: #ff8fa3;
-      font-size: 1.5rem;
-    }
-    .changeMonthBtn{
-      padding: 0 10px;
-      cursor: pointer;
-    }
-    h2 {
-      font-weight: 600;
+  height: calc(100vh - 60px);
+
+  .diary-container {
+    flex: 1;
+    overflow-y: auto;
+    .diary-header{
+      display: flex;
+      vertical-align: middle;
+      margin-bottom: 20px;
+      >*{
+        color: #ff8fa3;
+        font-size: 1.5rem;
+      }
+      .changeMonthBtn{
+        padding: 0 10px;
+        cursor: pointer;
+      }
+      h2 {
+        font-weight: 600;
+      }
     }
   }
+  .detail-view {
+    width: 400px;
+    padding: 30px;
+    margin-left: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(255, 77, 109, 0.2); 
+    position: sticky;
+    top: 20px;
+    max-height: 100vh;
+  }
 }
+
 
 
 .card-grid {
@@ -28,15 +46,15 @@
   .diary-card {
     background: #ffffff;
     border-radius: 12px;
-    border: 1px solid #ff8fa3;
+    border: 1px solid #ffe5ec;
     padding: 20px;
     display: flex;
     flex-direction: column;
     transition: transform 0.2s, box-shadow 0.2s;
     cursor: pointer;
     &:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(255, 77, 109, 0.2); 
     }
     .card-header {
       display: flex;

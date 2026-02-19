@@ -21,7 +21,12 @@ export class Calendar implements OnInit {
 
   selectedDate:number = new Date().getDate();
   selectedMonth:number = new Date().getMonth();
-
+  
+  ngOnInit() {
+    const currentViewDate = this.dateService.getValue();
+    this.generateCalendar(currentViewDate.getFullYear(), currentViewDate.getMonth());
+  
+  }
   clickChangeMonth(direct:number){
     const currentViewDate = this.dateService.getValue();
     let currentMonth = currentViewDate.getMonth();
@@ -36,11 +41,7 @@ export class Calendar implements OnInit {
     const nextDate = new Date(currentViewDate.getFullYear(),currentMonth);
     this.dateService.updateDate(nextDate);
   }
-  ngOnInit() {
-    const currentViewDate = this.dateService.getValue();
-    this.generateCalendar(currentViewDate.getFullYear(), currentViewDate.getMonth());
-  
-  }
+
   onDateClick(day:number){
     const currentViewDate = this.dateService.getValue();
     console.log('click the calendar : '+ day);
