@@ -1,59 +1,39 @@
-# DailyDiary
+# 📔 Daily Diary [In Progress]
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.1.
+> **"Capture and save your precious daily memories."** A cozy personal diary web application designed to help you document your life with ease. Built with **Angular** and **Spring Boot**.
 
-## Development server
+---
 
-To start a local development server, run:
+## ✨ Key Features
 
-```bash
-ng serve
-```
+- **Monthly Archive**: A structured calendar-style view to browse and manage your memories by month.
+- **Mobile-First Design**: Fully responsive UI optimized for a seamless experience on both mobile and desktop.
+- **Secure Journaling**: Personal data management with a robust REST API backend.
+- **Interactive Writing**: A clean and distraction-free editor for your daily thoughts.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## 🛠 Tech Stack
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Frontend
 
-```bash
-ng generate component component-name
-```
+- **Framework**: Angular 17+
+- **Language**: TypeScript
+- **Styling**: SCSS (Mobile Responsive)
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Backend
 
-```bash
-ng generate --help
-```
+- **Framework**: Spring Boot 3.x
+- **Language**: Java 17
+- **Database**: PostgreSQL
+- **API**: RESTful Web Services
 
-## Building
+---
 
-To build the project run:
+## 🚀 Project Goal
 
-```bash
-ng build
-```
+This project aims to provide a warm, user-friendly space for personal reflection while demonstrating my proficiency in:
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+1.  **Full-stack development** (Integration between Angular and Spring Boot).
+2.  **Responsive Web Design** (Prioritizing mobile accessibility).
+3.  **Database Management** (Efficient CRUD operations for personal logs).
