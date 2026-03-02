@@ -12,9 +12,10 @@ export class CalendarPage {
   selectedDay:number | null = null;
   handleDateChange(day:number){
     this.selectedDay = day;
+    console.log("calendar-page selectedDay :: " + this.selectedDay);
   }
   selectedDiary: DiaryInfo | null = null;
-  onDiarySelect(diary: DiaryInfo | null) { // 추가
+  onDiarySelect(diary: DiaryInfo | null) {
     this.selectedDiary = diary;
   }
 }

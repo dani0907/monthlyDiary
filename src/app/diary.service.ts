@@ -14,10 +14,10 @@ export class DiaryService{
       diary.date.toDateString() === date.toDateString()
     );
   }
-  addDiaryData(date: Date, title: string, content: string, tag: string[]) {
-    const newDiary: DiaryInfo = { date, title, content, tag };
-    this.diaryList.push(newDiary);
-    console.log('new diary is saved:', newDiary);
+  addDiaryData(diary:DiaryInfo) {
+    // const newDiary: DiaryInfo = { date, title, content, tag };
+    this.diaryList.push(diary);
+    console.log('new diary is saved:', diary);
   }
   getDiaryDaysInMonth(year: number, month: number): Set<number> {
     const days = this.diaryList

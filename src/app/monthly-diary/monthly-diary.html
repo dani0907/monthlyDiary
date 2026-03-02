@@ -6,7 +6,7 @@
       <button (click)="clickChangeMonth(2)" class="changeMonthBtn"><i class="bi bi-caret-right-fill"></i></button>
     </div>
     <div class="card-grid">
-      <div (click)="showDiaryEditer()" class="diary-card" *ngFor="let diary of diaryList">
+      <div (click)="showDiaryEditer(diary)" class="diary-card" *ngFor="let diary of diaryList">
         <div class="card-header">
           <span class="date">{{diary.date}}</span>
           <button class="more-btn">⋮</button>
@@ -25,6 +25,6 @@
     </div>
   </div>
   <div class="detail-view" *ngIf="diaryEdit">
-    <app-diary></app-diary>
+    <app-diary [diary]="selectedDiary"></app-diary>
   </div>
 </div>

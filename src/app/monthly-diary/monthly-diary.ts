@@ -16,6 +16,8 @@ export class MonthlyDiary {
   dateService:DateService = inject(DateService);
   diaryService:DiaryService = inject(DiaryService);
   
+  selectedDiary: DiaryInfo | null = null;
+
   viewDate$ = this.dateService.viewDate$;
 
   diaryEdit:boolean = false;
@@ -48,10 +50,16 @@ export class MonthlyDiary {
     this.getDiaries();
   }
   
-  showDiaryEditer(){
-    this.diaryEdit = !this.diaryEdit;
-    console.log(this.diaryEdit);
-    return this.diaryEdit;
+  showDiaryEditer(diary :DiaryInfo){
+    if (this.diaryEdit && this.selectedDiary?.date === diary.date) {
+      this.diaryEdit = false;
+      this.selectedDiary = null;
+    } else {
+      // 닫혀있거나 다른 날짜 클릭 → 열기 or 내용 교체
+      this.diaryEdit = true;
+      this.selectedDiary = diary;
+    }
+
   }
 
 }
