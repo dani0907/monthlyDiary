@@ -2,12 +2,13 @@
   <h3 class="diary-header">Today's Diary</h3>
 
   <div class="input-group">
-    <input type="text" placeholder="title of the day (◡̈)/" />
-    
-    <textarea placeholder="How was your day?"></textarea>
+    <input 
+      type="text" 
+      placeholder="title of the day (◡̈)/" 
+      [value]="diary?.title ?? ''" />
+    <textarea 
+      placeholder="How was your day?">{{ diary?.content ?? '' }}</textarea>
   </div>
+  <button class="save-btn">Save this memory✨</button>
 
-  <button class="save-btn">
-    Save this memory✨
-  </button>
 </div>

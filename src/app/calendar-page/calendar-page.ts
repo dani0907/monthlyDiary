@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Calendar } from '../calendar/calendar';
 import { Diary } from '../diary/diary';
-
+import { DiaryInfo } from '../diary-info';
 @Component({
   selector: 'app-calendar-page',
   imports: [Calendar, Diary],
@@ -12,5 +12,9 @@ export class CalendarPage {
   selectedDay:number | null = null;
   handleDateChange(day:number){
     this.selectedDay = day;
+  }
+  selectedDiary: DiaryInfo | null = null;
+  onDiarySelect(diary: DiaryInfo | null) { // 추가
+    this.selectedDiary = diary;
   }
 }

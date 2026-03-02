@@ -19,7 +19,7 @@
          *ngFor="let day of daysInMonth" 
          (click)="onDateClick(day)"
          [class.selected]="isSelected(day)"
-         [class.has-diary]="false"> 
+         [class.has-diary]="hasDiary(day)"> 
       <span class="date-num">{{ day }}</span>
     </div>
   </div>

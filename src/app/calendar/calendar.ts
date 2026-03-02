@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component,OnInit,EventEmitter,Output,inject } from '@angular/core';
 import { DateService } from '../date.service';
+import { DiaryService } from '../diary.service';
+import { DiaryInfo } from '../diary-info';
 @Component({
   selector: 'app-calendar',
   standalone:true,
@@ -11,14 +13,16 @@ import { DateService } from '../date.service';
 
 export class Calendar implements OnInit {
   @Output() dateSelect = new EventEmitter<number>();
+  @Output() diarySelect = new EventEmitter<DiaryInfo | null>();
+  
   // viewDate: Date = new Date(); // today's date
-  dateService = inject(DateService)
+  dateService = inject(DateService);
+  diaryService = inject(DiaryService);
   viewDate$ = this.dateService.viewDate$;
   daysInMonth: number[] = [];  
   emptyDays: number[] = []; //empty date
-  // nowMonth = this.viewDate.getMonth();
-  // nowYear = this.viewDate.getFullYear();
-
+  
+  diaryDays: Set<number> = new Set(); 
   selectedDate:number = new Date().getDate();
   selectedMonth:number = new Date().getMonth();
   
@@ -48,11 +52,16 @@ export class Calendar implements OnInit {
     this.dateSelect.emit(day);
     this.selectedDate = day;
     this.selectedMonth = currentViewDate.getMonth();
+    const diary = this.diaryService.getDiaryData(
+      new Date(currentViewDate.getFullYear(), currentViewDate.getMonth(), day)
+    );
+    this.diarySelect.emit(diary ?? null); // 없으면 null 전달
   }
   isSelected(day:number):boolean{
     if(this.selectedDate != day) return false;
     else return true;
   }
+  
   generateCalendar(year:number,month:number) {
     // check firstday of this month 
     const firstDayOfMonth = new Date(year, month, 1).getDay();
@@ -62,5 +71,9 @@ export class Calendar implements OnInit {
     const lastDateOfMonth = new Date(year, month + 1, 0).getDate();
 
     this.daysInMonth = Array.from({ length: lastDateOfMonth }, (_, i) => i + 1);
+    this.diaryDays = this.diaryService.getDiaryDaysInMonth(year, month);
+  }
+  hasDiary(day: number): boolean {
+    return this.diaryDays.has(day);
   }
 }
