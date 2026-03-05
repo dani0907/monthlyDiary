@@ -1,73 +1,140 @@
-.calendar-wrapper{
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.calendar-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+
   .calendar-header {
     display: flex;
     justify-content: space-between;
-    grid-column: span 7;
-    color: #ffffff;
-    background-color: #ff8fa3;
-    padding: 20px 10px;
-    border-radius: 10px 10px 0 0 ;
-    margin-bottom: 10px;
-    >*{
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-    .calendar-title{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    .calendar-datebox{
-      display: flex;
-      align-items: center;
-      button{
-        border: none;
-        background-color: inherit;
-        color: #FFFFFF;
-        padding: 10px;
-        font-size: 1.5rem;
-      }
-    }
-  }
-  .calendar-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
-  
-    .day-label {
-      color: #ff8fa3;
-      font-weight: bold;
-      padding: 10px 0;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-shrink: 0;
+
+    .calendar-title {
+      font-size: 0.75rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: var(--color-text-muted);
       text-transform: uppercase;
-      text-align: center;
     }
 
-    .day-cell {
-      aspect-ratio: 1;
-      background: white;
-      border: 2px solid #ffe5ec;
-      border-radius: 15px;
+    .calendar-datebox {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.2s ease;
+      gap: 12px;
 
-      &:hover , &.selected{
-        background: #fff0f3;
-        transform: scale(1.05);
+      h2 {
+        font-size: 1.4rem;
+        font-weight: 900;
+        color: var(--color-text);
+        letter-spacing: -1px;
+        min-width: 100px;
+        text-align: center;
       }
 
-      &.has-diary {
-        border: 3px solid #ff8fa3;
-        &::after {
-          content: '●';
-          color: #ff8fa3;
-          font-size: 10px;
+      button {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: none;
+        background: var(--color-surface2);
+        color: var(--color-primary-deep);
+        font-size: 0.75rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+
+        &:hover {
+          background: var(--color-primary-light);
+          transform: scale(1.08);
         }
       }
     }
+  }
+
+  .calendar-grid {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-auto-rows: auto;
+    gap: 2px;
+
+    .day-label {
+      text-align: center;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      color: var(--color-text-muted);
+      padding: 4px 0 10px;
+      text-transform: uppercase;
+      &:first-child { color: var(--sun-color); }
+      &:last-child  { color: var(--sat-color); }
+    }
+
+    .empty-cell {
+      visibility: hidden;
+    }
+
+    .day-cell {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.15s;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--color-text);
+      padding: 8px 0;
+
+      .date-num {
+        line-height: 1;
+      }
+
+      &:hover {
+        background: var(--color-surface2);
+      }
+
+      &.selected {
+        background: var(--color-primary);
+        color: white;
+        box-shadow: 0 4px 12px var(--color-shadow);
+      }
+
+      &.has-diary::after {
+        content: '';
+        position: absolute;
+        bottom: 3px;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: var(--color-primary-deep);
+      }
+
+      &.selected.has-diary::after {
+        background: rgba(255,255,255,0.8);
+      }
+    }
+
+    // Sun: 1st cell in each row after header
+    .day-cell:nth-child(7n + 8) { color: var(--sun-color); }
+    .day-cell:nth-child(7n + 8).selected { color: white; }
+
+    // Sat: 7th cell in each row
+    .day-cell:nth-child(7n + 7) { color: var(--sat-color); }
+    .day-cell:nth-child(7n + 7).selected { color: white; }
   }
 }

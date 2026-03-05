@@ -1,15 +1,22 @@
 <div class="diary-container">
-  <h3 class="diary-header">Today's Diary</h3>
+
+  <div class="diary-date-badge" *ngIf="diaryDate">
+    <div class="dot"></div>
+    <span>{{ diaryDate | date:'EEE · MMMM d, yyyy' }}</span>
+  </div>
+
+  <h3 class="diary-header">Today's Diary ✦</h3>
 
   <div class="input-group">
-    <input 
-      type="text" 
-      placeholder="title of the day (◡̈)/" 
-      [value]="diaryTitle" />
-    <textarea 
+    <input
+      type="text"
+      placeholder="title of the day (◡̈)/"
+      [(ngModel)]="diaryTitle" />
+    <textarea
       placeholder="How was your day?"
-      [value]="diaryContent"></textarea>
-      <div class="tag-group">
+      [(ngModel)]="diaryContent"></textarea>
+
+    <div class="tag-group">
       <div class="tag-list">
         <span class="tag-item" *ngFor="let tag of tags; let i = index">
           # {{ tag }}
@@ -24,6 +31,7 @@
         (keydown)="onTagKeydown($event)" />
     </div>
   </div>
-  <button class="save-btn" (click)="addDiaryFunction()">Save this memory✨</button>
+
+  <button class="save-btn" (click)="addDiaryFunction()">Save this memory ✨</button>
 
 </div>

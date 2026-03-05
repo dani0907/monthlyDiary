@@ -1,15 +1,136 @@
+/* ============================
+   THEME DEFINITIONS
+   ============================ */
+
+/* Default: Pink */
+:root, [data-theme="pink"] {
+  --color-primary:       #ff85a1;
+  --color-primary-deep:  #f06292;
+  --color-primary-mid:   #ffadc8;
+  --color-primary-light: #ffd6e3;
+  --color-surface:       #ffffff;
+  --color-surface2:      #fff0f5;
+  --color-bg:            #fdf6f9;
+  --color-text:          #3d2c35;
+  --color-text-soft:     #9e7d8a;
+  --color-text-muted:    #c4a8b4;
+  --color-border:        #ffe5ec;
+  --color-shadow:        rgba(240, 98, 146, 0.12);
+  --color-tag-bg:        #ffe5ec;
+  --color-tag-text:      #f06292;
+  --gradient:            linear-gradient(135deg, #ffadc8 0%, #f06292 100%);
+  --sun-color:           #f48fb1;
+  --sat-color:           #ce93d8;
+}
+
+[data-theme="lavender"] {
+  --color-primary:       #b39ddb;
+  --color-primary-deep:  #7c5cbf;
+  --color-primary-mid:   #ce93d8;
+  --color-primary-light: #ede7f6;
+  --color-surface:       #ffffff;
+  --color-surface2:      #f5f0ff;
+  --color-bg:            #f8f5fd;
+  --color-text:          #2e2040;
+  --color-text-soft:     #7c6d9e;
+  --color-text-muted:    #b5a8d4;
+  --color-border:        #ede7f6;
+  --color-shadow:        rgba(124, 92, 191, 0.12);
+  --color-tag-bg:        #ede7f6;
+  --color-tag-text:      #7c5cbf;
+  --gradient:            linear-gradient(135deg, #ce93d8 0%, #7c5cbf 100%);
+  --sun-color:           #ce93d8;
+  --sat-color:           #9575cd;
+}
+
+[data-theme="mint"] {
+  --color-primary:       #4db6ac;
+  --color-primary-deep:  #00897b;
+  --color-primary-mid:   #80cbc4;
+  --color-primary-light: #b2dfdb;
+  --color-surface:       #ffffff;
+  --color-surface2:      #f0faf9;
+  --color-bg:            #f4fdfb;
+  --color-text:          #1a3330;
+  --color-text-soft:     #5a8a84;
+  --color-text-muted:    #9dc4c0;
+  --color-border:        #b2dfdb;
+  --color-shadow:        rgba(0, 137, 123, 0.12);
+  --color-tag-bg:        #e0f5f2;
+  --color-tag-text:      #00897b;
+  --gradient:            linear-gradient(135deg, #80cbc4 0%, #00897b 100%);
+  --sun-color:           #80cbc4;
+  --sat-color:           #4db6ac;
+}
+
+[data-theme="peach"] {
+  --color-primary:       #ffb74d;
+  --color-primary-deep:  #f57c00;
+  --color-primary-mid:   #ffcc80;
+  --color-primary-light: #ffe0b2;
+  --color-surface:       #ffffff;
+  --color-surface2:      #fff8f0;
+  --color-bg:            #fffaf5;
+  --color-text:          #3d2c1a;
+  --color-text-soft:     #a07040;
+  --color-text-muted:    #d4b08a;
+  --color-border:        #ffe0b2;
+  --color-shadow:        rgba(245, 124, 0, 0.12);
+  --color-tag-bg:        #fde8d8;
+  --color-tag-text:      #f57c00;
+  --gradient:            linear-gradient(135deg, #ffcc80 0%, #f57c00 100%);
+  --sun-color:           #ffb74d;
+  --sat-color:           #ff8a65;
+}
+
+[data-theme="gray"] {
+  --color-primary:       #90a4ae;
+  --color-primary-deep:  #455a64;
+  --color-primary-mid:   #b0bec5;
+  --color-primary-light: #cfd8dc;
+  --color-surface:       #ffffff;
+  --color-surface2:      #f4f6f7;
+  --color-bg:            #f8f9fa;
+  --color-text:          #263238;
+  --color-text-soft:     #607d8b;
+  --color-text-muted:    #90a4ae;
+  --color-border:        #e0e7ea;
+  --color-shadow:        rgba(69, 90, 100, 0.10);
+  --color-tag-bg:        #eceff1;
+  --color-tag-text:      #455a64;
+  --gradient:            linear-gradient(135deg, #b0bec5 0%, #455a64 100%);
+  --sun-color:           #90a4ae;
+  --sat-color:           #78909c;
+}
+
+/* ============================
+   RESET & BASE
+   ============================ */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Pretendard', sans-serif; 
+  font-family: 'Pretendard', 'Nunito', sans-serif;
 }
 
-body {
-  
-  // background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
-  min-height: 100vh;
+html, body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--color-bg);
+  color: var(--color-text);
   line-height: 1;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 10% 15%, rgba(255,255,255,0) 0%, transparent 40%),
+    radial-gradient(circle at 90% 85%, rgba(255,255,255,0) 0%, transparent 40%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* http://meyerweb.com/eric/tools/css/reset/ 

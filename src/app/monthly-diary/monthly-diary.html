@@ -1,29 +1,41 @@
 <div class="main-layout">
   <div class="diary-container list-view">
     <div class="diary-header">
-      <button (click)="clickChangeMonth(1)" class="changeMonthBtn"><i class="bi bi-caret-left-fill"></i></button>
-      <h2>{{ (viewDate$ | async)| date:'MM.yyyy'}}</h2>
-      <button (click)="clickChangeMonth(2)" class="changeMonthBtn"><i class="bi bi-caret-right-fill"></i></button>
+      <button (click)="clickChangeMonth(1)" class="changeMonthBtn">
+        <i class="bi bi-caret-left-fill"></i>
+      </button>
+      <h2>{{ (viewDate$ | async) | date:'MM.yyyy' }}</h2>
+      <button (click)="clickChangeMonth(2)" class="changeMonthBtn">
+        <i class="bi bi-caret-right-fill"></i>
+      </button>
+      <span class="diary-count">
+        <strong>{{ diaryList.length }}</strong> memories this month
+      </span>
     </div>
-    <div class="card-grid">
-      <div (click)="showDiaryEditer(diary)" class="diary-card" *ngFor="let diary of diaryList">
-        <div class="card-header">
-          <span class="date">{{diary.date}}</span>
-          <button class="more-btn">⋮</button>
-        </div>
-        <div class="card-body">
-          <h3 class="title">{{diary.title}}</h3>
-          <p class="content">
-            {{diary.content}}
-          </p>
-        </div>
-        <div class="card-footer">
-          <span class="tag" *ngFor="let tag of diary.tag">{{tag}}</span>
-          <!-- <span class="tag">#공부</span> -->
+
+    <div class="card-scroll">
+      <div class="card-grid">
+        <div
+          (click)="showDiaryEditer(diary)"
+          class="diary-card"
+          [class.active]="selectedDiary?.date === diary.date"
+          *ngFor="let diary of diaryList">
+          <div class="card-header">
+            <span class="date">{{ diary.date | date:'EEE · MMM d' }}</span>
+            <button class="more-btn">⋮</button>
+          </div>
+          <div class="card-body">
+            <h3 class="title">{{ diary.title }}</h3>
+            <p class="content">{{ diary.content }}</p>
+          </div>
+          <div class="card-footer">
+            <span class="tag" *ngFor="let tag of diary.tag"># {{ tag }}</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
   <div class="detail-view" *ngIf="diaryEdit">
     <app-diary [diary]="selectedDiary"></app-diary>
   </div>

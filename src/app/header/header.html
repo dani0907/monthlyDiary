@@ -1,6 +1,20 @@
 <header class="header">
-  <div class="nav">
-    <a [routerLink]="['/monthly']">Monthly</a>
-    <a [routerLink]="['/diary']">Diary</a>
+  <div class="nav-inner">
+    <span class="brand">✦ daily diary</span>
+    <nav class="nav-links">
+      <a [routerLink]="['/monthly']" routerLinkActive="active">Monthly</a>
+      <a [routerLink]="['/diary']" routerLinkActive="active">Diary</a>
+    </nav>
+    <div class="theme-picker">
+      <button 
+        *ngFor="let t of themes"
+        class="theme-dot"
+        [attr.data-theme-name]="t.name"
+        [style.background]="t.color"
+        [class.active]="currentTheme === t.name"
+        (click)="setTheme(t.name)"
+        [title]="t.label">
+      </button>
+    </div>
   </div>
 </header>

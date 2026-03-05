@@ -6,7 +6,7 @@
     ></app-calendar>
   </section>
   <section class="diary-section">
-    <app-diary [diary]="selectedDiary" [day]="selectedDay"></app-diary>
+    <app-diary [diary]="selectedDiary" [day]="selectedDay" (saveDiary)="onSaveDiary()"></app-diary>
   </section>
 </div>
   

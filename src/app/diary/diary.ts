@@ -14,6 +14,7 @@ import { DateService } from '../date.service';
 export class Diary {
   @Input() day:number|null=null;
   @Input() diary: DiaryInfo | null = null;
+  @Output() saveDiary = new EventEmitter<void>();
   
   diaryService = inject(DiaryService);
   dateService = inject(DateService);
@@ -28,7 +29,6 @@ export class Diary {
 
 
   ngOnChanges() {
-    // diary 바뀔 때마다 태그 초기화
     this.tags = this.diary?.tag ? [...this.diary.tag] : [];
     this.diaryTitle = this.diary?.title ?? '';
     this.diaryContent = this.diary?.content ?? '';
@@ -40,6 +40,7 @@ export class Diary {
   }
 
   onTagKeydown(event: KeyboardEvent) {
+    // prevent process two times when the user type Korean.
     if (event.key === 'Enter' && event.isComposing) return;
     if (event.key === 'Enter' && this.tagInput.trim()) {
       event.preventDefault();
@@ -59,7 +60,8 @@ export class Diary {
     }
     console.log("diaryDate :: " + this.diaryDate);
     
-    // this.diaryService.addDiaryData(inputDiaryData);
+    this.diaryService.addDiaryData(inputDiaryData);
+    this.saveDiary.emit();
   }
   deleteDiaryFunction(){
     console.log('delete diary');

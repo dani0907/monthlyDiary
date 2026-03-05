@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input, ViewChild } from '@angular/core';
 import { Calendar } from '../calendar/calendar';
 import { Diary } from '../diary/diary';
 import { DiaryInfo } from '../diary-info';
+import { DateService } from '../date.service';
 @Component({
   selector: 'app-calendar-page',
   imports: [Calendar, Diary],
@@ -9,6 +10,15 @@ import { DiaryInfo } from '../diary-info';
   styleUrl: './calendar-page.scss',
 })
 export class CalendarPage {
+  @ViewChild(Calendar) calendarRef!: Calendar; 
+  dateService = inject(DateService);
+  
+  onSaveDiary() {
+    this.calendarRef.generateCalendar( // 캘린더 함수 직접 호출!
+      this.dateService.getValue().getFullYear(),
+      this.dateService.getValue().getMonth()
+    );
+  }
   selectedDay:number | null = null;
   handleDateChange(day:number){
     this.selectedDay = day;

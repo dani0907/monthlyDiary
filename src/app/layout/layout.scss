@@ -1,13 +1,19 @@
 :host {
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
-  // min-height: calc(100vh - 120px); 
-  // background-color: #fff0f3; 
-  // padding: 40px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  padding: 50px 0;
 }
-.content{
+
+.content {
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
   max-width: 1200px;
-  margin: auto;
-  height: calc(100vh - 60px);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px 20px;
 }
