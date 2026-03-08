@@ -14,6 +14,7 @@ export class DateService{
     console.log("updateDate ***" + newDate);
   }
   getValue():Date{
+    console.log(`getvalue()  :  ${this.viewDateSource.getValue()}`);
     return this.viewDateSource.getValue();
   }
 }

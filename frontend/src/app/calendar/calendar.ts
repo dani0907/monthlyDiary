@@ -18,6 +18,7 @@ export class Calendar implements OnInit {
   // viewDate: Date = new Date(); // today's date
   dateService = inject(DateService);
   diaryService = inject(DiaryService);
+
   viewDate$ = this.dateService.viewDate$;
   daysInMonth: number[] = [];  
   emptyDays: number[] = []; //empty date
@@ -26,6 +27,8 @@ export class Calendar implements OnInit {
   selectedDate:number = new Date().getDate();
   selectedMonth:number = new Date().getMonth();
   
+  diaryList: DiaryInfo[] = [];
+
   ngOnInit() {
     const currentViewDate = this.dateService.getValue();
     this.generateCalendar(currentViewDate.getFullYear(), currentViewDate.getMonth());
@@ -52,10 +55,11 @@ export class Calendar implements OnInit {
     this.dateSelect.emit(day);
     this.selectedDate = day;
     this.selectedMonth = currentViewDate.getMonth();
-    const diary = this.diaryService.getDiaryData(
-      new Date(currentViewDate.getFullYear(), currentViewDate.getMonth(), day)
-    );
-    this.diarySelect.emit(diary ?? null); // 없으면 null 전달
+    const diary = this.diaryList.find(d =>
+      new Date(d.date).getDate() === day
+    ) ?? null;
+
+    this.diarySelect.emit(diary);
   }
   isSelected(day:number):boolean{
     if(this.selectedDate != day) return false;
@@ -71,7 +75,14 @@ export class Calendar implements OnInit {
     const lastDateOfMonth = new Date(year, month + 1, 0).getDate();
 
     this.daysInMonth = Array.from({ length: lastDateOfMonth }, (_, i) => i + 1);
-    this.diaryDays = this.diaryService.getDiaryDaysInMonth(year, month);
+
+    this.diaryService.getAllDiaries(year, month).subscribe(data => {
+      this.diaryList = data;
+      
+      this.diaryDays = new Set(
+        data.map(d => new Date(d.date).getDate())
+      );
+    });
   }
   hasDiary(day: number): boolean {
     return this.diaryDays.has(day);

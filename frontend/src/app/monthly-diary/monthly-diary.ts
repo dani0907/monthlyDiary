@@ -31,8 +31,12 @@ export class MonthlyDiary {
     const currentViewDate = this.dateService.getValue();
     let currentMonth = currentViewDate.getMonth();
     let currentYear = currentViewDate.getFullYear();
-
-    this.diaryList = this.diaryService.getAllDiaries(currentYear,currentMonth);
+    console.log(`currentMonth : ${currentMonth}, currentYear : ${currentYear}`);
+    this.diaryService.getAllDiaries(currentYear, currentMonth)
+    .subscribe(data => {
+      this.diaryList = data;
+    });
+    console.log(`this.diaryList : ${JSON.stringify(this.diaryList)}`);
   }
 
   clickChangeMonth(direct:number){
@@ -45,7 +49,7 @@ export class MonthlyDiary {
       currentMonth += 1;
     }
     const nextDate = new Date(currentViewDate.getFullYear(), currentMonth, 1);
-  
+    console.log("nextDate : " + nextDate);
     this.dateService.updateDate(nextDate);
     this.getDiaries();
   }
