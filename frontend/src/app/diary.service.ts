@@ -21,6 +21,12 @@ export class DiaryService{
   deleteDiary(id: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
+  editDiary(id: string, diary:DiaryInfo):Observable<DiaryInfo>{
+    return this.http.put<DiaryInfo>(
+      `${this.apiUrl}/${id}`,
+        diary
+    );
+  }
 
   // getAllDiaries(year:number,month:number): DiaryInfo[] {
   //   return this.diaryList.filter(diary=>(

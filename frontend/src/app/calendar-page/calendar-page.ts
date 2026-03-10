@@ -14,7 +14,7 @@ export class CalendarPage {
   dateService = inject(DateService);
   
   onSaveDiary() {
-    this.calendarRef.generateCalendar( // 캘린더 함수 직접 호출!
+    this.calendarRef.generateCalendar( 
       this.dateService.getValue().getFullYear(),
       this.dateService.getValue().getMonth()
     );

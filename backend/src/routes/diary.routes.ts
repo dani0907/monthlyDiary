@@ -17,12 +17,15 @@ router.get('/', async (req: Request, res: Response) => {
 router.get('/monthly', async (req: Request, res: Response) => {
   try {
     const { year, month } = req.query;
+    console.log('get year:', year, 'month:', month); 
     const start = new Date(Number(year), Number(month), 1);
     const end = new Date(Number(year), Number(month) + 1, 0);
+    console.log('select start:', start, 'end:', end);
     const diaries = await DiaryModel.find({
       date: { $gte: start, $lte: end }
     }).sort({ date: 1 });
     res.json(diaries);
+    console.log('get diary data:', diaries);
   } catch (err) {
     res.status(500).json({ message: '월별 조회 실패', err });
   }

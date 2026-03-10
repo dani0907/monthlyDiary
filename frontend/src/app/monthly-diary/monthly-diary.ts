@@ -1,10 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject,ChangeDetectorRef } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { DateService } from '../date.service';
 import { Diary } from '../diary/diary';
 import { DiaryInfo } from '../diary-info';
 import { DiaryService } from '../diary.service';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-monthly-diary',
   imports: [CommonModule,Diary],
@@ -15,43 +16,49 @@ export class MonthlyDiary {
   // viewDate: Date = new Date();
   dateService:DateService = inject(DateService);
   diaryService:DiaryService = inject(DiaryService);
+  cdr = inject(ChangeDetectorRef);
   
   selectedDiary: DiaryInfo | null = null;
 
   viewDate$ = this.dateService.viewDate$;
 
   diaryEdit:boolean = false;
-  diaryList:DiaryInfo[] = [];
+  // diaryList:DiaryInfo[] = [];
+  diaryList$!: Observable<DiaryInfo[]>; 
   
   ngOnInit() {
     this.getDiaries();
   }
 
-  getDiaries() {
+  getDiaries(year?: number, month?: number) {
     const currentViewDate = this.dateService.getValue();
-    let currentMonth = currentViewDate.getMonth();
-    let currentYear = currentViewDate.getFullYear();
-    console.log(`currentMonth : ${currentMonth}, currentYear : ${currentYear}`);
-    this.diaryService.getAllDiaries(currentYear, currentMonth)
-    .subscribe(data => {
-      this.diaryList = data;
-    });
-    console.log(`this.diaryList : ${JSON.stringify(this.diaryList)}`);
+    let currentMonth = month??currentViewDate.getMonth();
+    let currentYear = year??currentViewDate.getFullYear();
+    
+    console.log(`getDiaries getMonth: ${currentMonth}`)
+    // this.diaryService.getAllDiaries(currentYear, currentMonth)
+    // .subscribe(data => {
+    //   this.diaryList = [];
+    //   console.log(`getAllDiaries data : ${JSON.stringify(data)}`);
+    //   this.diaryList = data;
+    //   this.cdr.detectChanges();
+    //   console.log('diaryList 업데이트 후:', this.diaryList); // 추가
+    // });
+    // console.log(`this.diaryList : ${JSON.stringify(this.diaryList)}`);
+    this.diaryList$ = this.diaryService.getAllDiaries(currentYear, currentMonth);
   }
 
   clickChangeMonth(direct:number){
     const currentViewDate = this.dateService.getValue();
     let currentMonth = currentViewDate.getMonth();
-    // console.log("monthly diary :: "+this.viewDate.getMonth());
     if(direct == 1){
       currentMonth -= 1;
     } else if(direct == 2) {
       currentMonth += 1;
     }
     const nextDate = new Date(currentViewDate.getFullYear(), currentMonth, 1);
-    console.log("nextDate : " + nextDate);
     this.dateService.updateDate(nextDate);
-    this.getDiaries();
+    this.getDiaries(nextDate.getFullYear(), nextDate.getMonth());
   }
   
   showDiaryEditer(diary :DiaryInfo){
@@ -59,11 +66,14 @@ export class MonthlyDiary {
       this.diaryEdit = false;
       this.selectedDiary = null;
     } else {
-      // 닫혀있거나 다른 날짜 클릭 → 열기 or 내용 교체
       this.diaryEdit = true;
       this.selectedDiary = diary;
     }
 
+  }
+  onSaveDiary(){
+    console.log(`**onSaveDiary start**`);
+    this.getDiaries();
   }
 
 }
