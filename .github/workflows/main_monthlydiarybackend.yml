@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'MonthlyDiaryBackend'
           slot-name: 'Production'
-          package: .
+          package: ./backend
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DF505AC184644890A49AC22744EEFDF7 }}
