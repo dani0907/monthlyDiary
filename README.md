@@ -18,24 +18,27 @@ A personal diary web application built with Angular and Node.js. Write, edit, an
 ## 🛠 Tech Stack
 
 ### Frontend
-| Tech | Description |
-|------|-------------|
-| Angular | Component-based SPA framework |
-| TypeScript | Strongly typed JavaScript |
-| RxJS | Reactive data handling with Observables |
-| SCSS | CSS with variables for theming |
+
+| Tech       | Description                             |
+| ---------- | --------------------------------------- |
+| Angular    | Component-based SPA framework           |
+| TypeScript | Strongly typed JavaScript               |
+| RxJS       | Reactive data handling with Observables |
+| SCSS       | CSS with variables for theming          |
 
 ### Backend
-| Tech | Description |
-|------|-------------|
-| Node.js | JavaScript runtime |
-| Express | REST API server |
-| Mongoose | MongoDB object modeling |
-| TypeScript | Type-safe backend code |
+
+| Tech       | Description             |
+| ---------- | ----------------------- |
+| Node.js    | JavaScript runtime      |
+| Express    | REST API server         |
+| Mongoose   | MongoDB object modeling |
+| TypeScript | Type-safe backend code  |
 
 ### Database
-| Tech | Description |
-|------|-------------|
+
+| Tech    | Description             |
+| ------- | ----------------------- |
 | MongoDB | NoSQL document database |
 
 ---
@@ -113,12 +116,12 @@ MONGODB_URI=mongodb://localhost:27017/dailydiary
 
 ## 🔌 API Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/diaries/monthly?year=&month=` | Get entries by month |
-| POST | `/api/diaries` | Create a new entry |
-| PUT | `/api/diaries/:id` | Update an entry |
-| DELETE | `/api/diaries/:id` | Delete an entry |
+| Method | Endpoint                            | Description          |
+| ------ | ----------------------------------- | -------------------- |
+| GET    | `/api/diaries/monthly?year=&month=` | Get entries by month |
+| POST   | `/api/diaries`                      | Create a new entry   |
+| PUT    | `/api/diaries/:id`                  | Update an entry      |
+| DELETE | `/api/diaries/:id`                  | Delete an entry      |
 
 ---
 

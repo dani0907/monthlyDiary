@@ -8,7 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class DiaryService{
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3000/api/diaries';
+  // private apiUrl = 'http://localhost:3000/api/diaries';
+  private apiUrl = 'monthlydiarybackend.azurewebsites.net';
   
   getAllDiaries(year:number, month:number) : Observable<DiaryInfo[]>{
     return this.http.get<DiaryInfo[]>(
